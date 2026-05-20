@@ -7,6 +7,7 @@ import com.gymbooking.util.GymUtils;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class MemberService {
@@ -47,5 +48,9 @@ public class MemberService {
 
     public List<Member> getAllMembers() {
         return memberDao.getAll();
+    }
+
+    public Optional<Member> getMemberById(int id) {
+        return memberDao.getById(id);
     }
 }
