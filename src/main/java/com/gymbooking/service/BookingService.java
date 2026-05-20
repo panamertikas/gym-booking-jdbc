@@ -3,12 +3,18 @@ package com.gymbooking.service;
 import com.gymbooking.dao.BookingDao;
 import com.gymbooking.model.Booking;
 import com.gymbooking.util.GymUtils;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
 
 public class BookingService {
 
-    private final BookingDao bookingDao = new BookingDao();
+    private final BookingDao bookingDao;
+
+    public BookingService(EntityManagerFactory emf) {
+        this.bookingDao = new BookingDao(emf);
+    }
+
 
     public void addBooking(Booking booking) {
         if(GymUtils.isNull(booking)) {

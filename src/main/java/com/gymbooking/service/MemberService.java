@@ -1,15 +1,21 @@
 package com.gymbooking.service;
 
+
 import com.gymbooking.dao.MemberDao;
 import com.gymbooking.model.Member;
 import com.gymbooking.util.GymUtils;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
-import java.util.Objects;
+
 
 public class MemberService {
 
-    private final MemberDao memberDao = new MemberDao();
+    private final MemberDao memberDao;
+
+    public MemberService(EntityManagerFactory emf) {
+        this.memberDao = new MemberDao(emf);
+    }
 
     public void addMember(Member member) {
         if (GymUtils.isNull(member)) {
@@ -19,6 +25,16 @@ public class MemberService {
 
         memberDao.add(member);
     }
+
+    public void updateMember(Member member) {
+        if(GymUtils.isNull(member)) {
+            System.out.println("Member cannot be null.");
+            return;
+        }
+
+        memberDao.update(member);
+    }
+
 
     public void deleteMember(Member member) {
         if(GymUtils.isNull(member)) {
