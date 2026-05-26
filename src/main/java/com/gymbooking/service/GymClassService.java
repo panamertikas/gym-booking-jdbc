@@ -6,10 +6,13 @@ import com.gymbooking.util.GymUtils;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GymClassService {
 
     private final GymClassDao gymClassDao ;
+
+
 
     public GymClassService(EntityManagerFactory emf) {
         this.gymClassDao = new GymClassDao(emf);
@@ -41,6 +44,10 @@ public class GymClassService {
 
         gymClassDao.delete(gymClass);
 
+    }
+
+    public Optional<GymClass> getGymClassById(int id) {
+        return gymClassDao.getById(id);
     }
 
     public List<GymClass> getAllGymClasses() {
